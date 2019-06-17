@@ -15,27 +15,39 @@ func main() {
 		"佐渡島": 6,
 	}
 
-	rand.Seed(time.Now().UnixNano())
+	var island_c = copy_map(island)
 
 	fmt.Println("Please push the any key")
 
 	for {
-		if (len(island) == 0) {
+		if (len(island_c) == 0) {
 			fmt.Println("お前の席ねぇから!!!!!!")
 			break
 		} else {
-			fmt.Scanln()
-			val := choice(island)
+			var reset string
+			fmt.Scanln(&reset)
+			if (reset == "reset") {
+				island_c = copy_map(island)
+			}
 
-			fmt.Println(val, "に座りましょう", "空き", island[val])
+			val := choice(island_c)
 
-			island[val] -= 1
+			fmt.Println(val, "に座りましょう", "空き", island_c[val])
 
-			if (island[val] == 0) {
-				delete(island, val)
+			island_c[val] -= 1
+			if (island_c[val] == 0) {
+				delete(island_c, val)
 			}
 		}
 	}
+}
+
+func copy_map(idic map[string]int) map[string]int {
+	dic := make(map[string]int)
+	for key, value := range idic {
+		dic[key] = value
+	}
+	return dic
 }
 
 func choice(m map[string]int) string {
