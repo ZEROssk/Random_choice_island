@@ -28,11 +28,12 @@ func main() {
 			fmt.Scanln(&reset)
 			if (reset == "reset") {
 				island_c = copy_map(island)
+				fmt.Scanln()
 			}
 
 			val := choice(island_c)
 
-			fmt.Println(val, "に座りましょう", "空き", island_c[val])
+			fmt.Println(val, "に座りましょう")//+"空き"+island_c[val]
 
 			island_c[val] -= 1
 			if (island_c[val] == 0) {
