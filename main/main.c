@@ -1,16 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main(void) {
-	char island[5]={
-		"小豆島",
-		"屋久島",
-		"種子島",
-		"軍艦島",
-		"佐渡島",
-	}
+	char island[][256] = {"小豆島", "屋久島", "種子島", "軍艦島", "佐渡島"};
+	int r;
+	int c;
 
-	for (int i=0; i < 5; i++) {
-		printf("%d\n", island[i][0]);
+	for (;;) {
+		srand(time(NULL));
+		r = rand() % 5;
+
+		if ((c = getchar()) == '\n') {
+			printf("%d : %s\n", r, island[r]);
+		} else {
+			continue;
+		}
 	}
 
 	return 0;
