@@ -2,19 +2,31 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void) {
-	char island[][256] = {"小豆島", "屋久島", "種子島", "軍艦島", "佐渡島"};
-	int r;
-	int c;
+char island[][256] = {"小豆島", "屋久島", "種子島", "軍艦島", "佐渡島"};
+int island_cap[] = {6, 6, 6, 6, 6};
+int rnum;
+int rst;
 
+int main(void) {
 	for (;;) {
 		srand(time(NULL));
-		r = rand() % 5;
+		rnum = rand() % 5;
 
-		if ((c = getchar()) == '\n') {
-			printf("%d : %s\n", r, island[r]);
+		printf("エンターキーを押してください\n r でリセット\n");
+
+		rst = getchar();
+
+		if (rst == '\n') {
+			system("clear");
+			if (island_cap[rnum] == 0) {
+				printf("\n\n\n%s は満員です\n\n", island[rnum]);
+				continue;
+			}
+			island_cap[rnum] -= 1;
+			printf("\n\n\n%s に座りましょう 空席: %d\n\n", island[rnum], island_cap[rnum]);
 		} else {
-			continue;
+			system("clear");
+			printf("test\n");
 		}
 	}
 

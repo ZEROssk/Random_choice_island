@@ -37,8 +37,8 @@ func main() {
 			fmt.Println(val, "に座りましょう")
 
 			island_c[val] -= 1
+			fmt.Println(island_c)
 			if (island_c[val] == 0) {
-				fmt.Println(island_c)
 				delete(island_c, val)
 			}
 		}
