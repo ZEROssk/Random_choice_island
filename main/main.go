@@ -33,7 +33,8 @@ func main() {
 
 			val := choice(island_c)
 
-			fmt.Println(val, "に座りましょう")//+"空き"+island_c[val]
+			fmt.Println(val, "に座りましょう")
+			fmt.Println(island_c)
 
 			island_c[val] -= 1
 			if (island_c[val] == 0) {
