@@ -22,11 +22,12 @@ func main() {
 	for {
 		if (len(island_c) == 0) {
 			fmt.Println("お前の席ねぇから!!!!!!")
-			break
+			island_c = copy_map(island)
 		} else {
 			var reset string
 			fmt.Scanln(&reset)
 			if (reset == "reset") {
+				fmt.Println("席状態をリセットしました")
 				island_c = copy_map(island)
 				fmt.Scanln()
 			}
@@ -34,10 +35,10 @@ func main() {
 			val := choice(island_c)
 
 			fmt.Println(val, "に座りましょう")
-			fmt.Println(island_c)
 
 			island_c[val] -= 1
 			if (island_c[val] == 0) {
+				fmt.Println(island_c)
 				delete(island_c, val)
 			}
 		}
