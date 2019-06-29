@@ -16,13 +16,33 @@ namespace RandomIsland
 				{"佐渡島", 6},
 				{"小豆島", 6}
 			};
+			var islandMap = new Dictionary<string, int>(IslandMap);
 
-			Random rand = new Random();
-			var data = IslandMap.ElementAt(rand.Next(0, IslandMap.Count));
+			while(true)
+			{
+				Console.WriteLine("エンターキーを押してください\nリセット:reset");
+				string str = Console.ReadLine();
 
-			Console.WriteLine(data.Key +" "+ data.Value);
+				if(islandMap.Count == 0)
+				{
+					Console.WriteLine("お前の席ねぇから！\n");
+					break;
+				}else if(str != "reset"){
+					Random rand = new Random();
+					string key = islandMap.ElementAt(rand.Next(0, islandMap.Count)).Key;
+
+					islandMap[key] -= 1;
+					Console.WriteLine(key +"に座りましょう 空き"+ islandMap[key] +"\n");
+					if(islandMap[key] == 0)
+					{
+						islandMap.Remove(key);
+					}
+				}else{
+					islandMap = new Dictionary<string, int>(IslandMap);
+					Console.WriteLine("\nリセットしました\n");
+				}
+			}
 		}
-		//Console.Read();
 	}
 }
 
